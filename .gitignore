@@ -1,0 +1,11 @@
+# Arquivos compilados pelo Java
+bin/
+*.class
+
+# Configurações de IDEs (VS Code, Eclipse, IntelliJ)
+.vscode/
+.idea/
+*.iml
+*.settings/
+.classpath
+.project

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroCiv: Island Expansion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <span class="badge">Estratégia 2D</span>
+                <h1>MicroCiv</h1>
+                <p>Island Expansion</p>
+            </div>
+            <form id="form-inicio" onsubmit="iniciarJogo(event)">
+                <div class="form-group">
+                    <label for="input-civ">🏛️ Nome da Civilização</label>
+                    <input type="text" id="input-civ" placeholder="Ex: Império Atlantis" required maxlength="25">
+                </div>
+                <div class="form-group">
+                    <label for="input-leader">👑 Nome do Líder</label>
+                    <input type="text" id="input-leader" placeholder="Ex: Alexander" required maxlength="25">
+                </div>
+                <button type="submit" class="btn-primary">Fundar Civilização 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-container" class="app-container hidden">
+        
+        <header class="top-bar">
+            <div class="civ-info">
+                <div class="civ-icon">👑</div>
+                <div>
+                    <h2 id="display-civ">Civilização</h2>
+                    <p>Líder: <span id="display-leader">-</span> | Turno: <strong id="display-turn">1</strong></p>
+                </div>
+            </div>
+
+            <div class="resources-bar">
+                <div class="res-item" title="Sua população ativa">
+                    <span class="icon">👥</span>
+                    <div class="res-val">
+                        <small>População</small>
+                        <strong id="res-pop">0</strong>
+                    </div>
+                </div>
+                <div class="res-item" title="Estoque de Madeira">
+                    <span class="icon">🪵</span>
+                    <div class="res-val">
+                        <small>Madeira</small>
+                        <strong id="res-madeira">0</strong>
+                    </div>
+                </div>
+                <div class="res-item" title="Estoque de Comida">
+                    <span class="icon">🌾</span>
+                    <div class="res-val">
+                        <small>Comida</small>
+                        <strong id="res-comida">0</strong>
+                    </div>
+                </div>
+                <div class="res-item" title="Estoque de Pedra">
+                    <span class="icon">🪨</span>
+                    <div class="res-val">
+                        <small>Pedra</small>
+                        <strong id="res-pedra">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-turno" onclick="passarTurno()">⏳ End Turn</button>
+        </header>
+
+        <div class="main-layout">
+            
+            <aside class="sidebar">
+                <h3>🔨 Construir Estruturas</h3>
+                <p class="subtitle">Selecione e clique no mapa:</p>
+
+                <div class="build-menu">
+                    <button class="btn-build active" data-id="0" onclick="selecionarEstrutura(0, this)">
+                        <span class="b-icon">🏠</span>
+                        <div class="b-text">
+                            <strong>Casa</strong>
+                            <small>Solo: Grama | Habitação</small>
+                        </div>
+                    </button>
+
+                    <button class="btn-build" data-id="1" onclick="selecionarEstrutura(1, this)">
+                        <span class="b-icon">🌾</span>
+                        <div class="b-text">
+                            <strong>Fazenda</strong>
+                            <small>Solo: Grama | +Comida</small>
+                        </div>
+                    </button>
+
+                    <button class="btn-build" data-id="2" onclick="selecionarEstrutura(2, this)">
+                        <span class="b-icon">🪵</span>
+                        <div class="b-text">
+                            <strong>Acampamento</strong>
+                            <small>Solo: Floresta 🌲 | +Madeira</small>
+                        </div>
+                    </button>
+
+                    <button class="btn-build" data-id="3" onclick="selecionarEstrutura(3, this)">
+                        <span class="b-icon">⛏️</span>
+                        <div class="b-text">
+                            <strong>Pedreira</strong>
+                            <small>Solo: Montanha ⛰️ | +Pedra</small>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="log-box">
+                    <h4>📜 Feed do Reino</h4>
+                    <div id="log-text" class="log-content">Aguardando ações...</div>
+                </div>
+            </aside>
+
+            <main class="viewport">
+                <div id="tabuleiro" class="mapa-grid"></div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
